@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="header">
+    @*// Chercher feuille CSS sur internet et coller dans dossier content, ajouter au bundle dans appstart et créer une classe avec même nom pour apporter modifications*@
+    <div class="top_content">
+        <img class="logo" src="~/images/logo.jpg" />
+        <h1 class="name">Galaxy Swiss Bourdin</h1>
+
+    </div>
+    <div class="top_text_button">
+        <p class="lead">Bienvenue chez Galaxy Swiss Bourdin ! Découvrez les médecins présents dans votre départements : </p>
+        <p><a href="https://localhost:44369/Departements"></a></p>
+    </div>
+</div>
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Rejoignez-nous !</h2>
+            <p>
+                Vous êtes médecins et vous êtes nouveaux sur GSB, pour pouvoir créer votre fiche médecin et permettre aux utilisateurs de vous retrouver, @Html.ActionLink("Inscrivez vous", "Register", "Account") ! <br />
+                Vous vous êtes déjà identifié auparavant ? @Html.ActionLink("Connectez vous", "Login", "Account") !
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Rencontrez un médecin</h2>
+            <p>Retrouvez la liste de tout les médecins inscrit, trouvez celui dont vous avez besoin et contactez le <a href="https://localhost:44369/Medecins">ici </a>!</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Découvrez nous</h2>
+            <p>Trouvez toutes les informations dont vous pourriez avoir besoin sur nous <a href="https://localhost:44397/home/about">ici</a>.</p>
+            <p>N'hésitez pas à nous contacter si vous avez plus de questions ou si vous rencontrez un problème en cliquant <a href="https://localhost:44397/home/contact">ici</a>.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .header{
+        background-color: white;
+    }
+
+    .content {
+        background-color: steelblue;
+        display: flex;
+        justify-items: center;
+        border-radius: 7px;
+
+    }
+
+    .top_content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .name {
+        font-size: 36px;
+        margin-left: 20px;
+    }
+
+    .top_text_button {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .lead {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 40px 0;
+    }
+
+    .col-md-4 {
+        flex-basis: 30%;
+        margin-bottom: 20px;
+        text-align: center;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    a {
+        color: blue;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+            color: blue;
+        }
+</style>
+
+<script>
+    // Smooth scrolling to anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    for (let anchorLink of anchorLinks) {
+        anchorLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            const targetId = anchorLink.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            const topOffset = 100;
+            const topPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - topOffset;
+            window.scrollTo({ top: topPosition, behavior: 'smooth' });
+        });
+    }
+
+    // Toggle active class on navbar links
+    const navbarLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute('id');
+            }
+        });
+        navbarLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').slice(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>

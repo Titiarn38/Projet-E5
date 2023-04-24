@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Model.Departement>
+
+@{
+    ViewBag.Title = "Liste des départements";
+}
+
+<h2>Liste des départements</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Départements")
+        </th>
+        <th>
+            @Html.DisplayName("Régions")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dep_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.region_name)
+        </td>
+        <td>
+            @Html.ActionLink("Détails", "Details", new { id = item.num_dep })
+            <!--
+    @Html.ActionLink("Edit", "Edit", new { id = item.num_dep }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.num_dep })
+        -->
+        </td>
+    </tr>
+}
+
+</table>
